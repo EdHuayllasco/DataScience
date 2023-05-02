@@ -1,5 +1,5 @@
 import csv
-
+from math import sqrt
 users = {}
 
 with open('Movie_Ratings.csv', newline='') as csvfile:
@@ -65,6 +65,24 @@ def Pearson(rating1, rating2):
     else: 
         distance = (multi - ((sumrating1 * sumrating2)/ aux)) / deno
         return distance 
+def Cosine(rating1, rating2): 
+    common_items = set(rating1.keys()) & set(rating2.keys())
+    print(common_items)
+    if len(common_items) == 0:
+        return 0
+    multi = 0 
+    sqrating1 = 0
+    sqrating2 = 0
+
+    for key in rating1: 
+        sqrating1 += rating1[key]**2
+        if key in rating2: 
+            multi += rating1[key] * rating2[key]
+    for key in rating2:
+        sqrating2 += rating2[key]**2
+    distance = multi / (sqrt(sqrating1) *  sqrt(sqrating2))
+    return distance
 print(manhattan(users['Heather'], users['Bryan']))
 print(euclidiana(users['Heather'], users['Bryan']))
 print(Pearson(users['Heather'], users['Bryan']))
+print(Cosine(users['Heather'], users['Bryan']))
