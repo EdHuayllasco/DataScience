@@ -19,7 +19,7 @@ class Similitud:
     def __init__(self, nombre1, metrica):
         self.nombre1 = nombre1
         self.metrica = metrica
-    def manhattan(rating1, rating2): 
+    def manhattan(self,rating1, rating2): 
         distance = 0 
         commonRatings = False
 
@@ -31,7 +31,7 @@ class Similitud:
                 return distance 
         else: 
                 return -1
-    def euclidiana(rating1 , rating2): 
+    def euclidiana(self,rating1 , rating2): 
         distance = 0 
         commonRatings = False
 
@@ -43,7 +43,7 @@ class Similitud:
                 return pow(distance, 1/2)
         else: 
                 return -1
-    def Pearson(rating1, rating2): 
+    def Pearson(self,rating1, rating2): 
         multi = 0 
         sumrating1 = 0
         sumrating2 = 0
@@ -68,7 +68,7 @@ class Similitud:
         else: 
             distance = (multi - ((sumrating1 * sumrating2)/ aux)) / deno
             return distance 
-    def Cosine(rating1, rating2): 
+    def Cosine(self,rating1, rating2): 
         common_items = set(rating1.keys()) & set(rating2.keys())
         print(common_items)
         if len(common_items) == 0:
@@ -125,7 +125,7 @@ class Similitud:
         elif self.metrica == 'cosine':
             similitud = self.computeNearestCos(self.nombre1, users)[0][1]
         elif self.metrica == 'pearson':
-            similitud = self.computeNearestPer(self.nombre1, users) 
+            similitud = self.computeNearestPer(self.nombre1, users)[0][1]
         print(similitud)
 # print(manhattan(users['Heather'], users['Bryan']))
 # print(euclidiana(users['Heather'], users['Bryan']))
